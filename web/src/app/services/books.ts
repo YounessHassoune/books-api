@@ -8,11 +8,11 @@ export interface IBook {
   publicationDate: string;
   genre: string;
   cover: string;
-  author: IAuthor;
+  author: Author;
 }
 
 // create interface for Author entity
-export interface IAuthor {
+export interface Author {
   id: number;
   firstName: string;
   lastName: string;
@@ -38,6 +38,9 @@ export const bookApi = createApi({
   endpoints: (build) => ({
     getBooks: build.query<IBook[], void>({
       query: () => '/books',
+      // if something goes wrong, we want to retun an empty array
+      // so that we can render the loading state
+      transformResponse: (response: IBook[]) => response || [],
     }),
     getBookById: build.query<IBook, { id: number }>({
       query: ({ id }) => `books/${id}`,

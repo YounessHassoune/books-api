@@ -2,9 +2,12 @@ import { IBook } from 'src/app/services/books';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-export const Book = ({ title, genre, id, cover }: IBook) => {
+export const Book = ({ title, genre, id, cover }: Partial<IBook>) => {
   return (
     <motion.li
+      role='book'
+      data-id={id}
+      data-title={title}
       variants={{
         hidden: { y: 20, opacity: 0 },
         visible: { y: 0, opacity: 1 },

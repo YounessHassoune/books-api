@@ -6,8 +6,6 @@ export const BookDetails = () => {
   const { id } = useParams<{ id: string }>();
   const { data: book, isLoading } = useGetBookByIdQuery({ id: Number(id) });
   const navigate = useNavigate();
-  console.log(book);
-  
 
   if (isLoading) {
     return null;

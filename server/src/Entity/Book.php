@@ -11,7 +11,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource(normalizationContext={"groups"={"author:read"}},denormalizationContext={"groups"={"author:write"}})
+ * @ApiResource(normalizationContext={"groups"={"book:read"}},denormalizationContext={"groups"={"book:write"}})
  * @ORM\Entity()
  * @ApiFilter(SearchFilter::class, properties={"title":"word_start", "author","genre":"word_start"})
  */
@@ -94,7 +94,7 @@ class Book
      * targetEntity="Review" ,
      * mappedBy="book" ,
      * cascade={"persist" , "remove"} )
-     * @Groups({"boo:read"})
+     * @Groups({"book:read","book:write"})
      */
     private iterable $reviews;
 
